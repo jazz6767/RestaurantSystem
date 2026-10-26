@@ -1,15 +1,23 @@
-import { query } from '../../infrastructure/db';
+import { Table, Order } from '../../infrastructure/models';
 
 export const getAllTables = async () => {
-  const result = await query('SELECT id, table_number as "tableNumber", status FROM tables ORDER BY table_number');
-  return result.rows;
+  const tables = await Table.find().sort({ table_number: 1 }).lean();
+  return tables.map(t => ({
+    id: t._id.toString(),
+    tableNumber: t.table_number,
+    status: t.status
+  }));
 };
 
 export const updateTableStatusByNumber = async (tableNumber: string, status: string) => {
-  await query('UPDATE tables SET status = $1 WHERE table_number = $2', [status, tableNumber]);
+  await Table.findOneAndUpdate({ table_number: tableNumber }, { status });
 };
 
 export const getTableNumberByOrderId = async (orderId: string): Promise<string | null> => {
-  const result = await query('SELECT table_id FROM orders WHERE id = $1', [orderId]);
-  return result.rows[0]?.table_id || null;
+  const order = await Order.findById(orderId).lean();
+  if (order && order.table_id) {
+    const table = await Table.findOne({ table_number: order.table_id }).lean();
+    return table ? table.table_number : order.table_id;
+  }
+  return null;
 };

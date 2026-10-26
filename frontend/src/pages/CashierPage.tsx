@@ -62,7 +62,7 @@ export function CashierPage() {
         };
     }, [knownBills]);
 
-    const formatVnd = (amount: number) => `${Math.round(amount).toLocaleString('en-US')} VND`;
+    const formatInr = (amount: number) => `${Math.round(amount).toLocaleString('en-IN')} ₹`;
 
     const handleTableClick = async (table: Table) => {
         const tableId = table.tableNumber;
@@ -177,28 +177,28 @@ export function CashierPage() {
 
             <main className="mx-auto w-full max-w-7xl flex-1 p-4 md:px-6">
                 <div className="mb-6 grid grid-cols-2 gap-4">
-                    <Card>
-                        <CardHeader className="pb-2">
-                            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                                <Clock className="h-4 w-4" />
-                                Pending
+                    <Card className="overflow-hidden border-0 bg-background/50 shadow-sm backdrop-blur-md transition-all hover:-translate-y-1 hover:shadow-lg">
+                        <CardHeader className="bg-gradient-to-br from-amber-100/50 to-transparent pb-2">
+                            <CardTitle className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                                <Clock className="h-4 w-4 text-amber-500" />
+                                Pending Bills
                             </CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <p className="text-2xl font-bold text-amber-600">{formatVnd(stats.unpaidTotal)}</p>
-                            <p className="text-xs text-muted-foreground">{stats.unpaidCount} bills</p>
+                        <CardContent className="pt-4">
+                            <p className="text-3xl font-black text-amber-600">{formatInr(stats.unpaidTotal)}</p>
+                            <p className="mt-1 text-xs font-medium text-muted-foreground">{stats.unpaidCount} bills waiting</p>
                         </CardContent>
                     </Card>
-                    <Card>
-                        <CardHeader className="pb-2">
-                            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                                <CheckCircle2 className="h-4 w-4" />
-                                Collected
+                    <Card className="overflow-hidden border-0 bg-background/50 shadow-sm backdrop-blur-md transition-all hover:-translate-y-1 hover:shadow-lg">
+                        <CardHeader className="bg-gradient-to-br from-emerald-100/50 to-transparent pb-2">
+                            <CardTitle className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                                Collected Today
                             </CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <p className="text-2xl font-bold text-emerald-600">{formatVnd(stats.paidTotal)}</p>
-                            <p className="text-xs text-muted-foreground">{stats.paidCount} bills</p>
+                        <CardContent className="pt-4">
+                            <p className="text-3xl font-black text-emerald-600">{formatInr(stats.paidTotal)}</p>
+                            <p className="mt-1 text-xs font-medium text-muted-foreground">{stats.paidCount} bills settled</p>
                         </CardContent>
                     </Card>
                 </div>
@@ -224,21 +224,22 @@ export function CashierPage() {
                                     key={table.id}
                                     onClick={() => void handleTableClick(table)}
                                     className={cn(
-                                        'relative aspect-square rounded-xl border-2 p-4 transition-all cursor-pointer',
-                                        'flex flex-col items-center justify-center',
+                                        'group relative aspect-square rounded-2xl border-0 p-4 transition-all duration-300 cursor-pointer shadow-sm hover:-translate-y-1 hover:shadow-lg',
+                                        'flex flex-col items-center justify-center overflow-hidden',
                                         getTableColor(table),
-                                        selectedTable === table.tableNumber && 'ring-2 ring-primary ring-offset-2'
+                                        selectedTable === table.tableNumber && 'ring-4 ring-primary/50 ring-offset-2'
                                     )}
                                 >
-                                    <span className="text-2xl font-bold">{table.tableNumber}</span>
-                                    <div className="mt-1 flex items-center gap-1">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                                    <span className="relative text-3xl font-black tracking-tighter">{table.tableNumber}</span>
+                                    <div className="relative mt-2 flex items-center gap-1 rounded-full bg-background/50 px-2 py-0.5 backdrop-blur-sm">
                                         <Users className="h-3 w-3" />
-                                        <span className="text-xs">-</span>
+                                        <span className="text-xs font-semibold">-</span>
                                     </div>
-                                    <span className="mt-1 text-xs font-medium">{getTableLabel(table)}</span>
+                                    <span className="relative mt-2 text-xs font-bold uppercase tracking-wider opacity-80">{getTableLabel(table)}</span>
                                     {tableBill && (
-                                        <span className="mt-1 text-xs font-semibold">
-                                            {formatVnd(tableBill.totalAmount)}
+                                        <span className="relative mt-2 rounded-lg bg-background/40 px-2 py-1 text-sm font-black shadow-sm backdrop-blur-md">
+                                            {formatInr(tableBill.totalAmount)}
                                         </span>
                                     )}
                                 </button>
@@ -275,7 +276,7 @@ export function CashierPage() {
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-lg font-bold text-foreground">
-                                                    {formatVnd(b.totalAmount)}
+                                                    {formatInr(b.totalAmount)}
                                                 </p>
                                                 <Badge variant="outline" className="border-amber-300 text-amber-600">
                                                     Unpaid
@@ -314,14 +315,14 @@ export function CashierPage() {
                             <div className="rounded-lg bg-muted/50 p-3">
                                 <p className="text-sm text-muted-foreground">Bill total</p>
                                 <p className="text-xl font-bold text-foreground">
-                                    {formatVnd(selectedBill.totalAmount)}
+                                    {formatInr(selectedBill.totalAmount)}
                                 </p>
                             </div>
                             <Separator />
                             <div className="space-y-2">
                                 <div className="flex justify-between text-lg font-bold">
                                     <span className="text-foreground">Total</span>
-                                    <span className="text-primary">{formatVnd(selectedBill.totalAmount)}</span>
+                                    <span className="text-primary">{formatInr(selectedBill.totalAmount)}</span>
                                 </div>
                             </div>
                         </div>

@@ -31,7 +31,7 @@ export function BillPanel() {
                             Table {bill.tableId} bill
                         </CardTitle>
                         <div className="text-3xl font-bold text-foreground mb-4">
-                            {bill.totalAmount.toLocaleString('en-US')} VND
+                            {bill.totalAmount.toLocaleString('en-IN')} ₹
                         </div>
                         <div className="text-sm text-muted-foreground mb-4">
                             Status: <span className={`font-semibold ${bill.status === 'paid' ? 'text-success' : 'text-amber-600'}`}>{bill.status === 'paid' ? 'Paid' : 'Unpaid'}</span>

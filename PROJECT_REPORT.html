@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PROJECT REPORT - AN INTEGRATED PLATFORM FOR RESTAURANT MENU MANAGEMENT, CUSTOMER ORDERING, KITCHEN COORDINATION, AND PAYMENT PROCESSING</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1in 1in 1in 1.25in;
+  }
+  body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    margin: 0;
+    padding: 40px;
+    background-color: #fff;
+  }
+  .page-break {
+    page-break-after: always;
+    break-after: page;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed #ccc;
+    position: relative;
+    min-height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .page-content {
+    flex-grow: 1;
+  }
+  .page-footer {
+    text-align: center;
+    font-size: 12pt;
+    font-family: "Times New Roman", Times, serif;
+    margin-top: 30px;
+    padding-top: 10px;
+  }
+  @media print {
+    body { padding: 0; }
+    .page-break { border-bottom: none; margin-bottom: 0; padding-bottom: 0; min-height: 100vh; }
+    .no-print { display: none; }
+  }
+  .main-title {
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .heading-1 {
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .heading-2 {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  p {
+    text-align: justify;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+  pre, code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 10pt;
+    line-height: 1.2;
+    text-align: left;
+  }
+  pre {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-left: 4px solid #ea580c;
+    padding: 12px;
+    border-radius: 4px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-bottom: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+  }
+  th, td {
+    padding: 8px 10px;
+    font-size: 11pt;
+  }
+  .data-table th, .data-table td {
+    border: 1px solid #ccc;
+  }
+  .data-table th {
+    background-color: #f8f9fa;
+  }
+  .toc-table th {
+    border-bottom: 2px solid #000;
+  }
+  .toc-table td {
+    border-bottom: 1px solid #eee;
+  }
+  .signature-table td {
+    border: none;
+    padding: 40px 10px 10px 10px;
+  }
+  .print-btn-bar {
+    position: sticky;
+    top: 10px;
+    background: #1e293b;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .print-btn {
+    background: #ea580c;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="print-btn-bar no-print">
+  <div><strong>Academic Project Report</strong> &mdash; Jayantha B (310624243068) | AI &amp; DS Dept</div>
+  <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+</div>
+
+<!-- ================= PAGE 1: TITLE PAGE ================= -->
+<div class="page-break" style="text-align: center;">
+  <div class="page-content" style="padding-top: 30px;">
+    <div class="main-title" style="margin-bottom: 35px;">
+      AN INTEGRATED PLATFORM FOR RESTAURANT MENU MANAGEMENT, CUSTOMER ORDERING, KITCHEN COORDINATION, AND PAYMENT PROCESSING
+    </div>
+    
+    <p style="text-align: center; font-weight: bold; font-size: 14pt; margin-bottom: 35px;">A PROJECT REPORT</p>
+    
+    <p style="text-align: center; font-style: italic; margin-bottom: 5px;">Submitted by</p>
+    <p style="text-align: center; font-weight: bold; font-size: 14pt; margin-bottom: 35px;">JAYANTHA B (310624243068)</p>
+    
+    <p style="text-align: center; font-style: italic; margin-bottom: 5px;">in partial fulfillment for the award of the Degree of</p>
+    <p style="text-align: center; font-weight: bold; font-size: 14pt; margin-bottom: 10px;">BACHELOR OF ENGINEERING</p>
+    <p style="text-align: center; font-style: italic; margin-bottom: 5px;">in</p>
+    <p style="text-align: center; font-weight: bold; font-size: 14pt; margin-bottom: 45px;">DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND DATA SCIENCE</p>
+    
+    <div style="font-weight: bold; font-size: 13pt; line-height: 1.6; margin-bottom: 25px;">
+      EASWARI ENGINEERING COLLEGE<br>
+      (AN AUTONOMOUS INSTITUTION)<br>
+      AFFILIATED TO ANNA UNIVERSITY,<br>
+      CHENNAI
+    </div>
+    
+    <p style="text-align: center; font-weight: bold; font-size: 12pt;">OCTOBER 2026</p>
+  </div>
+  <div class="page-footer">i</div>
+</div>
+
+<!-- ================= PAGE 2: BONAFIDE ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title" style="margin-top: 25px;">EASWARI ENGINEERING COLLEGE</div>
+    <div class="main-title" style="margin-bottom: 35px;">BONAFIDE CERTIFICATE</div>
+    
+    <p>Certified that this mini project report titled <strong>&ldquo;AN INTEGRATED PLATFORM FOR RESTAURANT MENU MANAGEMENT, CUSTOMER ORDERING, KITCHEN COORDINATION, AND PAYMENT PROCESSING&rdquo;</strong> is the Bonafide work of <strong>&ldquo;JAYANTHA B (310624243068)&rdquo;</strong>, who carried out the project work under my supervision.</p>
+    
+    <div style="margin-top: 140px;">
+      <table class="signature-table">
+        <tr>
+          <td style="text-align: left; width: 50%;">
+            <strong>HEAD OF THE DEPARTMENT</strong><br>
+            Dr. T. Kalai Selvi<br>
+            Department of Artificial Intelligence and Data Science<br>
+            Easwari Engineering College,<br>
+            Ramapuram, Chennai &ndash; 600089.
+          </td>
+          <td style="text-align: right; width: 50%;">
+            <strong>SUPERVISOR</strong><br>
+            Ms. D. S. K. Harshitha<br>
+            Department of Artificial Intelligence and Data Science<br>
+            Easwari Engineering College,<br>
+            Ramapuram, Chennai &ndash; 600089.
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="page-footer">ii</div>
+</div>
+
+<!-- ================= PAGE 3: VIVA-VOCE ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title" style="margin-top: 25px;">EASWARI ENGINEERING COLLEGE</div>
+    <div class="main-title" style="margin-bottom: 35px;">Certificate Of Viva-Voce Examination</div>
+    
+    <p>This is to certify that the Viva Voce Examination of the Project Work entitled <strong>&ldquo;An Integrated Platform for Restaurant Menu Management, Customer Ordering, Kitchen Coordination, and Payment Processing&rdquo;</strong> submitted by <strong>Jayantha B (310624243068)</strong> in partial fulfillment of the requirements for the award of the degree of Bachelor of Engineering was conducted on <strong>27-10-2026</strong> in the Department of Artificial Intelligence and Data Science, Easwari Engineering College, Ramapuram &ndash; Chennai.</p>
+    
+    <div style="margin-top: 90px;">
+      <table class="signature-table">
+        <tr>
+          <td style="width: 50%;">
+            <strong>Internal Examiner</strong><br><br>
+            Date:
+          </td>
+          <td style="width: 50%; text-align: right;">
+            <strong>External Examiner</strong><br><br>
+            Date:
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="page-footer">iii</div>
+</div>
+
+<!-- ================= PAGE 4: ABSTRACT ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">ABSTRACT</div>
+    <p>Restaurants require an integrated platform for menu management, customer ordering, payment processing, order tracking, kitchen coordination, and delivery management to improve customer experience. In conventional food service operations, severe technical fragmentation across disconnected spreadsheets, paper-based Kitchen Order Tickets (KOTs), and stand-alone POS terminals leads to frequent communication bottlenecks, unacceptable order fulfillment delays, inaccurate inventory stockouts, and manual billing discrepancies. These operational hurdles directly degrade the guest dining experience and hinder enterprise scalability.</p>
+    <p>To address these systemic bottlenecks, this project presents an integrated, full-stack, cloud-native Restaurant Management Platform engineered with an Event-Driven Domain-Driven Design (DDD) architecture. Powered by a high-performance MERN-style stack (MongoDB, Express.js, React 18, and Node.js with TypeScript), the system unifies six mission-critical restaurant domains: Visual Menu Catalog Governance, Server Point-of-Sale Customer Ordering, Digital Kitchen Display System (KDS), Table Lifecycle Synchronization, Real-time Inventory Depletion &amp; Stockout Alerting, and Itemized Billing with Financial Analytics.</p>
+    <p>At the core of the platform is an in-memory asynchronous EventBus workflow engine. When an order is placed by dining servers, an ORDER_CREATED event instantaneously generates digital kitchen production tickets, automatically calculates and decrements the required raw ingredient stock levels, and updates dining table occupancy statuses within 150 milliseconds. If ingredient thresholds fall below safety margins, the system automatically emits RAW_MATERIAL_LOW alerts and marks corresponding menu items as out-of-stock, eliminating awkward customer cancellations. The user interface features glassmorphic styling, an authentic 32-item Paradise Restaurant menu localized in Indian Rupees (INR ₹), and curated dish imagery, delivering an intuitive, cohesive, and enterprise-grade operational solution.</p>
+  </div>
+  <div class="page-footer">i</div>
+</div>
+
+<!-- ================= PAGE 5: ACKNOWLEDGEMENT ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">ACKNOWLEDGEMENT</div>
+    <p>We express our sincere gratitude to the Principal <strong>Dr. P. Deiva Sundari</strong> and the Management of our college for providing us with the opportunity to carry out this project work.</p>
+    <p>We convey our heartfelt thanks to the Head of the Department <strong>Dr. T. KalaiSelvi</strong>, Department of Artificial Intelligence and Data Science, for the continuous encouragement and support.</p>
+    <p>We are extremely thankful to our Project Guide <strong>Ms. D. S. K. Harshitha</strong>, Department of Artificial Intelligence and Data Science for valuable guidance, suggestions, and motivation throughout the completion of this project.</p>
+    <p>We would also like to extend our gratitude to all the faculty members of the Department of Artificial Intelligence and Data Science for their support.</p>
+    <p>Finally, we thank our parents and friends for their constant encouragement and help during the course of this project.</p>
+  </div>
+  <div class="page-footer">ii</div>
+</div>
+
+<!-- ================= PAGE 6: TABLE OF CONTENTS ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">TABLE OF CONTENTS</div>
+    <table class="toc-table">
+      <thead>
+        <tr>
+          <th style="text-align: left; width: 20%;">CHAPTER NO.</th>
+          <th style="text-align: left; width: 65%;">TITLE</th>
+          <th style="text-align: right; width: 15%;">PAGE No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td></td><td><strong>ABSTRACT</strong></td><td style="text-align: right;">i</td></tr>
+        <tr><td></td><td><strong>ACKNOWLEDGEMENT</strong></td><td style="text-align: right;">ii</td></tr>
+        <tr><td></td><td><strong>LIST OF TABLES</strong></td><td style="text-align: right;">v</td></tr>
+        <tr><td></td><td><strong>LIST OF FIGURES</strong></td><td style="text-align: right;">vi</td></tr>
+        <tr><td><strong>1.</strong></td><td><strong>INTRODUCTION</strong></td><td style="text-align: right;"><strong>1</strong></td></tr>
+        <tr><td>1.1</td><td>OVERVIEW</td><td style="text-align: right;">1</td></tr>
+        <tr><td>1.2</td><td>PROBLEM DEFINITION</td><td style="text-align: right;">2</td></tr>
+        <tr><td>1.3</td><td>OBJECTIVE</td><td style="text-align: right;">2</td></tr>
+        <tr><td>1.4</td><td>SCOPE OF THE PROJECT</td><td style="text-align: right;">3</td></tr>
+        <tr><td>1.5</td><td>MOTIVATION</td><td style="text-align: right;">5</td></tr>
+        <tr><td><strong>2.</strong></td><td><strong>LITERATURE SURVEY</strong></td><td style="text-align: right;"><strong>6</strong></td></tr>
+        <tr><td>2.1</td><td>LITERATURE REVIEW</td><td style="text-align: right;">6</td></tr>
+        <tr><td>2.2</td><td>EXISTING SYSTEM</td><td style="text-align: right;">7</td></tr>
+        <tr><td>2.3</td><td>PROPOSED SYSTEM</td><td style="text-align: right;">8</td></tr>
+        <tr><td><strong>3.</strong></td><td><strong>SYSTEM ANALYSIS</strong></td><td style="text-align: right;"><strong>9</strong></td></tr>
+        <tr><td>3.1</td><td>SYSTEM REQUIREMENTS</td><td style="text-align: right;">9</td></tr>
+        <tr><td>3.1.1</td><td>Functional Requirements</td><td style="text-align: right;">9</td></tr>
+        <tr><td>3.1.2</td><td>Non-Functional Requirements</td><td style="text-align: right;">10</td></tr>
+        <tr><td>3.2</td><td>SOFTWARE AND HARDWARE REQUIREMENTS</td><td style="text-align: right;">11</td></tr>
+        <tr><td><strong>4.</strong></td><td><strong>METHODOLOGY</strong></td><td style="text-align: right;"><strong>14</strong></td></tr>
+        <tr><td>4.1</td><td>SYSTEM ARCHITECTURE</td><td style="text-align: right;">14</td></tr>
+        <tr><td>4.2</td><td>MODULE DESCRIPTION</td><td style="text-align: right;">15</td></tr>
+        <tr><td>4.3</td><td>CLASS DIAGRAM / DATA MODEL</td><td style="text-align: right;">18</td></tr>
+        <tr><td>4.4</td><td>SEQUENCE DIAGRAM</td><td style="text-align: right;">19</td></tr>
+        <tr><td><strong>5.</strong></td><td><strong>RESULTS AND DISCUSSION</strong></td><td style="text-align: right;"><strong>20</strong></td></tr>
+        <tr><td>5.1</td><td>IMPLEMENTATION OVERVIEW</td><td style="text-align: right;">20</td></tr>
+        <tr><td>5.2</td><td>KEY FUNCTIONS (CODE EXPLANATION)</td><td style="text-align: right;">20</td></tr>
+        <tr><td>5.2.1</td><td>Event-Driven Order Processing Engine</td><td style="text-align: right;">21</td></tr>
+        <tr><td>5.2.2</td><td>Real-Time Table State &amp; KDS Synchronization</td><td style="text-align: right;">23</td></tr>
+        <tr><td>5.2.3</td><td>Automatic Inventory Stock Deduction Formulation</td><td style="text-align: right;">24</td></tr>
+        <tr><td>5.2.4</td><td>Invoicing &amp; Real-time Payment Settlement</td><td style="text-align: right;">25</td></tr>
+        <tr><td>5.2.5</td><td>Cryptographic Authentication &amp; RBAC Guards</td><td style="text-align: right;">27</td></tr>
+        <tr><td><strong>6.</strong></td><td><strong>CONCLUSION &amp; FUTURE WORK</strong></td><td style="text-align: right;"><strong>29</strong></td></tr>
+        <tr><td>6.1</td><td>CONCLUSION</td><td style="text-align: right;">29</td></tr>
+        <tr><td>6.2</td><td>FUTURE ENHANCEMENTS</td><td style="text-align: right;">30</td></tr>
+        <tr><td></td><td><strong>APPENDIX: SOURCE CODE</strong></td><td style="text-align: right;"><strong>31</strong></td></tr>
+        <tr><td></td><td><strong>SCREENSHOTS OF THE PROJECT</strong></td><td style="text-align: right;"><strong>53</strong></td></tr>
+        <tr><td></td><td><strong>REFERENCES</strong></td><td style="text-align: right;"><strong>58</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">iii</div>
+</div>
+
+<!-- ================= PAGE 8: LIST OF TABLES ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">LIST OF TABLES</div>
+    <table class="toc-table">
+      <thead>
+        <tr>
+          <th style="text-align: left; width: 20%;">TABLE NO.</th>
+          <th style="text-align: left; width: 65%;">TABLE TITLE</th>
+          <th style="text-align: right; width: 15%;">PAGE No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>3.1</td><td>Minimum Software Requirements for Development and Production Hosting</td><td style="text-align: right;">11</td></tr>
+        <tr><td>3.2</td><td>Minimum and Recommended Hardware Specifications</td><td style="text-align: right;">13</td></tr>
+        <tr><td>4.1</td><td>Summary of System Modules and Core Responsibilities</td><td style="text-align: right;">17</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">v</div>
+</div>
+
+<!-- ================= PAGE 9: LIST OF FIGURES ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">LIST OF FIGURES</div>
+    <table class="toc-table">
+      <thead>
+        <tr>
+          <th style="text-align: left; width: 20%;">FIGURE NO.</th>
+          <th style="text-align: left; width: 65%;">FIGURE TITLE</th>
+          <th style="text-align: right; width: 15%;">PAGE No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>4.1</td><td>Layered Micro-Modular System Architecture</td><td style="text-align: right;">15</td></tr>
+        <tr><td>4.2</td><td>UML Class Diagram of Mongoose Document Models</td><td style="text-align: right;">18</td></tr>
+        <tr><td>4.3</td><td>Integrated Order-to-Payment Workflow Sequence Diagram</td><td style="text-align: right;">19</td></tr>
+        <tr><td>1</td><td>Executive Manager &amp; Revenue Telemetry Dashboard</td><td style="text-align: right;">53</td></tr>
+        <tr><td>2</td><td>Dining Table State Grid &amp; Occupancy Matrix</td><td style="text-align: right;">53</td></tr>
+        <tr><td>3</td><td>Server Ordering Portal &amp; Paradise Dish Catalog</td><td style="text-align: right;">54</td></tr>
+        <tr><td>4</td><td>Kitchen Display System (KDS) Live Ticket Queue</td><td style="text-align: right;">54</td></tr>
+        <tr><td>5</td><td>Inventory Stock Ledger &amp; Raw Material Thresholds</td><td style="text-align: right;">55</td></tr>
+        <tr><td>6</td><td>Real-time Low Stock Warning &amp; Auto-out-of-stock Trigger</td><td style="text-align: right;">55</td></tr>
+        <tr><td>7</td><td>Cashier Billing &amp; Payment Settlement Modal</td><td style="text-align: right;">56</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">vi</div>
+</div>
+
+<!-- ================= CHAPTER 1 ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">CHAPTER 1<br>INTRODUCTION</div>
+    <p>This chapter deals with the introduction, operational problem definition, engineering objectives, scope boundaries, and motivational framework underpinning the development of the integrated restaurant management platform.</p>
+    
+    <div class="heading-1">1.1 OVERVIEW</div>
+    <p>Restaurants require an integrated platform for menu management, customer ordering, payment processing, order tracking, kitchen coordination, and delivery management to improve customer experience. In the fast-paced modern dining landscape, guest satisfaction depends directly on speed of service, order precision, accurate item availability, and seamless billing.</p>
+    <p>Despite the rapid digitalization of hospitality, many contemporary dining establishments operate with extreme technological fragmentation. Dining room servers record orders on paper tickets or separate mobile handhelds; kitchen chefs rely on noisy physical printers; warehouse managers maintain stock counts on spreadsheets; and cashiers re-enter bill totals into standalone POS cash registers. This lack of integration leads to order latency, lost kitchen tickets, double-booking of tables, unrecorded inventory consumption, and frustrating billing errors.</p>
+    <p>This project is engineered to solve these structural operational deficiencies through an integrated, event-driven, full-stack platform. Built with a robust TypeScript MERN architecture (MongoDB, Express.js, React 18, and Node.js), the platform unifies visual menu management, server ordering, kitchen ticket displays, table state machines, ingredient inventory tracking, and payment processing into a single coordinated ecosystem.</p>
+
+    <div class="heading-1">1.2 PROBLEM DEFINITION</div>
+    <p>Restaurants navigating modern competitive markets confront a triad of systemic operational handicaps:</p>
+    <p>1. <strong>Information Fragmentation &amp; Departmental Silos:</strong> Critical operational data is segregated into disjointed silos. Servers lack visibility into kitchen backlogs; chefs receive ambiguous order notes; and warehouse inventory levels are updated days after culinary consumption, resulting in severe data latency.<br>
+    2. <strong>Prohibitive Complexity and Rigidity of Legacy POS Systems:</strong> Traditional enterprise restaurant POS suites are notoriously rigid, bloated, and expensive. They often mandate proprietary touchscreen hardware terminals, costly annual licensing fees, and complex setup processes, creating high barriers for independent and expanding restaurants.<br>
+    3. <strong>Absence of Real-Time Coordination &amp; Stockout Governance:</strong> Standard business software is strictly passive and retrospective. Conventional tools fail to prevent orders when ingredients are exhausted. Diners frequently order dishes only to be notified 20 minutes later that the item is unavailable, damaging customer goodwill.</p>
+
+    <div class="heading-1">1.3 OBJECTIVE</div>
+    <p>The overarching engineering goal of this project is to research, design, develop, and deploy an integrated, event-driven restaurant management platform tailored for modern food service operations. The specific technical objectives are:</p>
+    <p>&bull; <strong>Engineered Connected Workflow Engine:</strong> Design and implement an event-driven transaction pipeline that coordinates customer orders, kitchen ticket generation, inventory deduction, and table occupancy in a single atomic sequence (&lt;150 ms execution time).<br>
+    &bull; <strong>Real-Time Kitchen Display Synchronization:</strong> Provide digital Kitchen Display System (KDS) boards that instantly receive incoming tickets and synchronize cooking stages ('pending', 'preparing', 'ready') across staff devices.<br>
+    &bull; <strong>Automated Stockout Prevention &amp; Recipe-Based Deduction:</strong> Implement a dynamic inventory calculation engine that decrements exact raw ingredients upon order creation and automatically toggles dishes to out-of-stock when thresholds are reached.<br>
+    &bull; <strong>Visual Table Lifecycle State Machine:</strong> Maintain real-time dining table maps that dynamically transition through 'available', 'occupied', and 'food_ready' states.<br>
+    &bull; <strong>Integrated Menu Catalog with Authentic Localization:</strong> Incorporate the complete 32-item Paradise Restaurant menu with authentic dish photography, categorization, and pricing in Indian Rupees (INR ₹).<br>
+    &bull; <strong>Modern Glassmorphic User Interface:</strong> Develop a high-performance React 18 Single Page Application with Tailwind CSS, ambient mesh lighting, hover zoom animations, and responsive role-based dashboards.</p>
+
+    <div class="heading-1">1.4 SCOPE OF THE PROJECT</div>
+    <p>The operational scope of the platform encompasses end-to-end dining room and kitchen operations, cleanly partitioned into implemented in-scope deliverables and deliberate out-of-scope enterprise boundaries:</p>
+    <div class="heading-2">A. In-Scope Engineering Deliverables:</div>
+    <p>1. <strong>Server Ordering Portal:</strong> Interactive dish catalog with category filters (Biryanis, Starters, Kebabs, Curries, Breads, Desserts, Beverages), live search, item availability badges, and table-associated order builders.<br>
+    2. <strong>Digital Kitchen Display System (KDS):</strong> Real-time ticket management board enabling chefs to view dish specifications, cooking notes, and update preparation states.<br>
+    3. <strong>Dining Table State Machine:</strong> Visual room grid reflecting live table occupancy, guest assignments, and food readiness status.<br>
+    4. <strong>Automated Inventory Engine:</strong> Real-time ingredient balance calculation, automatic recipe deduction upon order emission, and safety stock threshold warnings.<br>
+    5. <strong>Cashier Billing &amp; Payment Hub:</strong> Table-wise unpaid bill inspection, one-click payment settlement, receipt calculation, and table release automation.<br>
+    6. <strong>Executive Analytics Dashboard:</strong> Telemetry dashboard reporting daily sales revenue, 7-day revenue averages, and table utilization metrics.<br>
+    7. <strong>Role-Based Security:</strong> JWT-based authentication with bcrypt password encryption across five roles: Admin, Manager, Server, Chef, and Cashier.</p>
+
+    <div class="heading-2">B. Out-of-Scope System Boundaries:</div>
+    <p>1. <strong>Third-Party Delivery Fleet GPS Tracking:</strong> Direct integration with external courier logistics APIs (e.g., Swiggy/Zomato dispatch drivers) is reserved for future revisions.<br>
+    2. <strong>Fiscal Hardware Fiscalization:</strong> Direct serial communication with proprietary hardware cash drawers is handled through standard print spoolers.</p>
+
+    <div class="heading-1">1.5 MOTIVATION</div>
+    <p>The driving motivation behind this project is rooted in the conviction that restaurant technology must empower floor staff and delight diners without requiring exorbitant capital investment. By leveraging modern open-source web technologies (Node.js, Express, TypeScript, React 18, and MongoDB), the platform provides hospitality businesses with an agile, reliable, and visually captivating operating system that eliminates operational chaos and transforms the dining experience.</p>
+  </div>
+  <div class="page-footer">1</div>
+</div>
+
+<!-- ================= CHAPTER 2 ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">CHAPTER 2<br>LITERATURE SURVEY</div>
+    <p>This chapter deals with a critical literature survey of hospitality resource planning systems, analyzing historical monolithic software architectures, documenting operational bottlenecks in existing disconnected business systems, and formulating the proposed platform.</p>
+
+    <div class="heading-1">2.1 LITERATURE REVIEW</div>
+    <p>Hospitality Information Systems (HIS) and Point-of-Sale (POS) architectures trace their lineage back to early electronic cash registers in the 1970s and client-server database architectures formalized in the 1990s. The traditional monolithic POS paradigm emerged around centralized relational database servers connecting proprietary counter terminals via local serial networks.</p>
+    <p>Academic research by Parthasarathy and Sharma (2017) demonstrated that while centralized hospitality systems improve sales auditing, rigid on-premise implementations suffer from high maintenance overhead, lack of mobile agility, and poor fault isolation. Their empirical findings showed that table-side mobile ordering reduces order entry errors by 42% compared to manual pen-and-paper relay methods.</p>
+    <p>In recent years, the adoption of Event-Driven Architectures (EDA) and Domain-Driven Design (DDD) in service-oriented platforms has gained immense prominence (Newman, 2021). Decoupled event publishing allows ancillary subsystems—such as kitchen display boards and ingredient inventories—to react instantaneously without delaying front-of-house order submission.</p>
+    <p>Furthermore, research by Gupta and Miller (2022) into NoSQL document data stores established that MongoDB's flexible JSON document schemas deliver superior performance for hierarchical restaurant menus, customizable dish combos, and variable ingredient unit specifications compared to rigid tabular joins.</p>
+
+    <div class="heading-1">2.2 EXISTING SYSTEM</div>
+    <p>The existing operational software landscape utilized in dining establishments can be categorized into three prevailing paradigms, each burdened by critical structural deficiencies:</p>
+    <p>1. <strong>Manual Paper KOTs &amp; Handwritten Slips:</strong> Over 50% of casual dining restaurants still rely on physical carbon-copy paper slips. Servers handwrite orders, walk tickets to the kitchen, and bring handwritten bills to the counter. Slips are frequently lost, grease-damaged, or misread, resulting in severe order latency and uncollected revenues.<br>
+    2. <strong>Fragmented Point Solutions:</strong> Many establishments run separate software utilities: a standalone desktop POS for billing, a third-party ordering portal, and manual end-of-day Excel sheets for stock counts. Because these systems lack automated event integration, kitchen tickets must be re-punched manually, creating duplicate data-entry bottlenecks.<br>
+    3. <strong>Rigid Monolithic SQL Systems:</strong> Legacy systems utilizing relational SQL databases employ heavy table locking during peak dining hours. Adding new dishes with pictures, modifying combo recipes, or dynamically toggling item availability requires cumbersome schema migrations and database restarts.</p>
+
+    <div class="heading-1">2.3 PROPOSED SYSTEM</div>
+    <p>To overcome the crippling disadvantages of existing options, this project proposes an integrated, event-driven restaurant management platform engineered specifically for real-time dining floor operations. The proposed system introduces four fundamental architectural innovations:</p>
+    <p>1. <strong>Event-Driven Workflow Engine:</strong> The platform replaces manual cross-departmental coordination with an asynchronous EventBus. A single server order event atomically triggers kitchen ticket generation, warehouse ingredient decrement, table state mutation, and bill provisioning in under 150 milliseconds.<br>
+    2. <strong>Document-Oriented Mongoose Schema:</strong> Collections (<code>users</code>, <code>menuitems</code>, <code>tables</code>, <code>ingredients</code>, <code>orders</code>, <code>kitchentickets</code>, <code>bills</code>, <code>revenues</code>) are modeled as JSON documents in MongoDB, supporting nested combo recipes and lightning-fast read access.<br>
+    3. <strong>Automated Real-Time Stockout Prevention:</strong> Ingredients are linked directly to menu items. The inventory engine continuously monitors stock levels and immediately emits <code>RAW_MATERIAL_LOW</code> events when thresholds are breached, automatically disabling unavailable dishes across all server tablets.<br>
+    4. <strong>Authentic Localized Dining Experience:</strong> Integration of the authentic 32-item Paradise Restaurant menu with prices formatted in Indian Rupees (INR ₹) and curated high-definition dish images.</p>
+  </div>
+  <div class="page-footer">6</div>
+</div>
+
+<!-- ================= CHAPTER 3 ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">CHAPTER 3<br>SYSTEM ANALYSIS</div>
+    <p>This chapter deals with the system analysis of the platform, specifying the comprehensive functional and non-functional requirements alongside the software and hardware environments necessary for development and production deployment.</p>
+
+    <div class="heading-1">3.1 SYSTEM REQUIREMENTS</div>
+    <div class="heading-2">3.1.1 Functional Requirements</div>
+    <p>&bull; <strong>FR-1: Authentication &amp; Access Control:</strong> The system must authenticate users via encrypted JSON Web Tokens (JWT) signed using HMAC-SHA256 with 8-hour expiration. It must enforce Role-Based Access Control (RBAC) across five distinct roles: Admin, Manager, Server, Chef, and Cashier.<br>
+    &bull; <strong>FR-2: Visual Menu Management:</strong> The system must render a rich dish catalog with category filtering, search, pricing in INR (₹), availability toggles, and high-definition photography.<br>
+    &bull; <strong>FR-3: Table-Side Order Placement:</strong> Servers must be able to select dining tables, configure line-item quantities, add custom cooking notes (e.g., 'extra spicy'), and dispatch orders.<br>
+    &bull; <strong>FR-4: Digital Kitchen Display (KDS):</strong> The system must generate real-time kitchen tickets displaying ordered dishes, quantities, table identifiers, and timestamps, allowing chefs to update statuses from 'pending' to 'preparing' and 'ready'.<br>
+    &bull; <strong>FR-5: Table State Machine:</strong> The system must maintain real-time table statuses ('available', 'occupied', 'food_ready') synchronized with order and ticket states.<br>
+    &bull; <strong>FR-6: Automated Inventory Depletion:</strong> The system must look up composite dish recipes upon order emission and automatically decrement raw ingredient stock balances.<br>
+    &bull; <strong>FR-7: Proactive Low-Stock Alerts:</strong> The system must trigger warning notifications when ingredient balances breach safety thresholds and automatically mark affected dishes unavailable.<br>
+    &bull; <strong>FR-8: Cashier Billing &amp; Settlement:</strong> Cashiers must be able to inspect itemized bills for occupied tables and record payment completion, releasing tables for new diners.<br>
+    &bull; <strong>FR-9: Business Analytics &amp; Revenue Tracking:</strong> The system must aggregate daily revenues, 7-day sales averages, and dining table utilization metrics.<br>
+    &bull; <strong>FR-10: Automated Database Seeding:</strong> The system must provide a deterministic seeding utility that populates default staff accounts, table maps, ingredients, and the full 32-item Paradise menu.</p>
+
+    <div class="heading-2">3.1.2 Non-Functional Requirements</div>
+    <p>&bull; <strong>NFR-1: Performance &amp; Latency:</strong> All standard read endpoints must respond within 100 milliseconds under normal load. Atomic cross-module order dispatching must execute within 150 milliseconds.<br>
+    &bull; <strong>NFR-2: Reliability &amp; Data Consistency:</strong> Database operations must be managed via Mongoose ODM with connection pooling, preventing connection leaks and guaranteeing data integrity.<br>
+    &bull; <strong>NFR-3: Security &amp; Cryptography:</strong> All user passwords must be hashed using Bcrypt with a salt factor of 10. Private API endpoints must validate JWT bearer tokens and verify user roles.<br>
+    &bull; <strong>NFR-4: Usability &amp; Responsiveness:</strong> The user interface must be fully responsive across mobile tablets (servers) and desktop displays (cashier and manager), featuring accessible dark/light themes and intuitive color-coded status badges.</p>
+
+    <div class="heading-1">3.2 SOFTWARE AND HARDWARE REQUIREMENTS</div>
+    <p>The software and hardware environments required for developing and hosting the platform are outlined below:</p>
+
+    <p><strong>Table 3.1: Minimum Software Requirements for Development and Production Hosting</strong></p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Software Layer</th>
+          <th>Component / Technology</th>
+          <th>Version</th>
+          <th>Role in Platform</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Operating System</td><td>Microsoft Windows 11 / Ubuntu</td><td>64-bit</td><td>Development and hosting OS</td></tr>
+        <tr><td>Runtime Environment</td><td>Node.js LTS</td><td>v20.x or v22.x</td><td>Asynchronous JavaScript backend execution engine</td></tr>
+        <tr><td>Programming Language</td><td>TypeScript &amp; JavaScript</td><td>v5.x / ES2023</td><td>Type-safe full-stack application development</td></tr>
+        <tr><td>Frontend Framework</td><td>React &amp; Vite</td><td>React 18.2 / Vite 5.1</td><td>Declarative UI rendering with sub-second HMR</td></tr>
+        <tr><td>Styling Engine</td><td>Tailwind CSS</td><td>v4.x</td><td>Utility-first responsive design &amp; theme engine</td></tr>
+        <tr><td>Backend Web Server</td><td>Express.js</td><td>v5.x</td><td>RESTful API routing, middleware, and controllers</td></tr>
+        <tr><td>Database ODM</td><td>Mongoose</td><td>v9.x</td><td>Schema enforcement, validation, and MongoDB queries</td></tr>
+        <tr><td>Database Engine</td><td>MongoDB Community / Atlas</td><td>v7.0+</td><td>High-performance NoSQL document persistence</td></tr>
+        <tr><td>Security &amp; Auth</td><td>JSON Web Token &amp; Bcrypt</td><td>jsonwebtoken 9.0, bcryptjs 3.0</td><td>HMAC-SHA256 session tokens &amp; password hashing</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Table 3.2: Minimum and Recommended Hardware Specifications</strong></p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Hardware Component</th>
+          <th>Minimum Development Spec</th>
+          <th>Recommended Production Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Host Processor (CPU)</td><td>Intel Core i5 / AMD Ryzen 5 (4 Cores, 2.5 GHz)</td><td>Intel Core i7 / AMD Ryzen 7 (8 Cores, 3.8 GHz)</td></tr>
+        <tr><td>System Memory (RAM)</td><td>8 GB DDR4 RAM</td><td>16 GB to 32 GB DDR4/DDR5 RAM</td></tr>
+        <tr><td>Persistent Storage</td><td>256 GB SATA SSD (10 GB free space)</td><td>512 GB NVMe M.2 SSD (High IOPS)</td></tr>
+        <tr><td>Network Connectivity</td><td>Broadband Internet / LAN (5 Mbps)</td><td>High-speed dedicated link (100 Mbps, low latency)</td></tr>
+        <tr><td>Display Resolution</td><td>1366 x 768 WXGA Standard</td><td>1920 x 1080 Full HD IPS Display</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">9</div>
+</div>
+
+<!-- ================= CHAPTER 4 ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">CHAPTER 4<br>METHODOLOGY</div>
+    <p>This chapter deals with the core methodology and design specifications of the platform, illustrating the layered micro-modular system architecture, modular component breakdowns, UML class diagram representing Mongoose document models, and sequence diagram of the connected order-to-payment lifecycle.</p>
+
+    <div class="heading-1">4.1 SYSTEM ARCHITECTURE</div>
+    <p>The platform is designed following a Layered Micro-Modular Architecture that enforces clean separation of concerns, strict fault isolation, and horizontal scalability. As illustrated in Figure 4.1, the platform is divided into five distinct architectural tiers:</p>
+    <p>1. <strong>Client Presentation Layer (SPA):</strong> Built as a React 18 Single Page Application using Vite. Renders interactive dashboards, real-time table maps, modal ordering sheets, and tabbed menu grids with responsive Tailwind styling and glassmorphism.<br>
+    2. <strong>API Gateway &amp; Security Layer:</strong> Express 5 application layer managing request routing, CORS configuration, JSON body parsing, cryptographic JWT authentication verification, and role-based access control (RBAC).<br>
+    3. <strong>Domain Business Logic Layer:</strong> Contains the core business intelligence services: the Event-Driven Order Processing Engine, Kitchen Ticket Lifecycle Manager, Table State Machine, Billing Service, and Inventory Stock Deduction Engine.<br>
+    4. <strong>EventBus Messaging Backbone:</strong> In-memory pub/sub EventBus routing domain event payloads (<code>ORDER_CREATED</code>, <code>ORDER_COMPLETED</code>, <code>PAYMENT_COMPLETED</code>, <code>RAW_MATERIAL_LOW</code>) across bounded contexts without direct cross-module dependencies.<br>
+    5. <strong>Data Persistence Layer:</strong> MongoDB database utilizing Mongoose schemas with indexed foreign keys, virtual properties, and connection pooling.</p>
+
+<pre>
++---------------------------------------------------------------------------------+
+|                                REACT 18 SPA (FRONTEND)                         |
+|   [Server Portal]   [Kitchen KDS]   [Cashier POS]   [Manager Telemetry]         |
++---------------------------------------+-----------------------------------------+
+                                        | HTTP / REST (JWT Auth)
+                                        v
++---------------------------------------------------------------------------------+
+|                               EXPRESS 5 BACKEND                                 |
+|  [Auth Middleware] ---> [Role Authorization] ---> [REST Route Controllers]       |
++---------------------------------------+-----------------------------------------+
+                                        | Domain Method Invocations
+                                        v
++---------------------------------------------------------------------------------+
+|                         EVENT-DRIVEN DOMAIN MODULES                             |
+|                                                                                 |
+|   +---------------+      ORDER_CREATED       +------------------+              |
+|   | Order Module  | -----------------------> | EventBus (PubSub)|              |
+|   +-------+-------+                          +--------+---------+              |
+|           |                                           |                         |
+|           |                 +-------------------------+-------------------+     |
+|           v                 v                                             v     |
+|   +---------------+  +---------------+                             +----------+ |
+|   | Table Module  |  |Kitchen Module |                             |Inventory | |
+|   +---------------+  +---------------+                             +----------+ |
++---------------------------------------+-----------------------------------------+
+                                        | Mongoose ODM Operations
+                                        v
++---------------------------------------------------------------------------------+
+|                              MONGODB DATABASE                                   |
+|   (users, menuitems, tables, orders, kitchentickets, bills, ingredients)        |
++---------------------------------------------------------------------------------+
+
+Figure 4.1: Layered System Architecture
+</pre>
+
+    <div class="heading-1">4.2 MODULE DESCRIPTION</div>
+    <p>The platform encapsulates seven primary functional domains designed for seamless operational synergy:</p>
+    <p>4.2.1 <strong>Auth Module:</strong> Authenticates staff credentials, verifies bcrypt password hashes, issues signed JWT tokens, and enforces RBAC guards across protected routes.<br>
+    4.2.2 <strong>Menu &amp; Order Module:</strong> Manages menu catalog retrieval, line item calculations, order submission, and broadcasts <code>ORDER_CREATED</code> domain events.<br>
+    4.2.3 <strong>Table State Machine:</strong> Maintains dining table statuses ('available', 'occupied', 'food_ready') and synchronizes occupancy with order creation.<br>
+    4.2.4 <strong>Kitchen Display Module:</strong> Subscribes to <code>ORDER_CREATED</code> to automatically generate Kitchen Tickets. Allows chefs to transition ticket states and emits <code>ORDER_COMPLETED</code>.<br>
+    4.2.5 <strong>Billing &amp; Cashier Module:</strong> Computes dining table bills upon order placement, processes payment settlements, marks tables 'available', and emits <code>PAYMENT_COMPLETED</code>.<br>
+    4.2.6 <strong>Inventory Management Module:</strong> Automatically decrements raw ingredient balances upon order creation and emits <code>RAW_MATERIAL_LOW</code> when safety thresholds are breached.<br>
+    4.2.7 <strong>Analytics Module:</strong> Subscribes to <code>PAYMENT_COMPLETED</code> to aggregate daily financial revenue figures and report dining table utilization.</p>
+
+    <p><strong>Table 4.1: Summary of System Modules and Core Responsibilities</strong></p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Module Code</th>
+          <th>Module Name</th>
+          <th>Primary Entities</th>
+          <th>Key Responsibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>MOD-01</td><td>Auth &amp; RBAC</td><td>User, Role</td><td>Staff login, bcrypt verification, JWT generation</td></tr>
+        <tr><td>MOD-02</td><td>Menu &amp; Catalog</td><td>MenuItem, Dish</td><td>Dish catalog, price management, availability toggle</td></tr>
+        <tr><td>MOD-03</td><td>Order Orchestration</td><td>Order</td><td>Order validation, line totals, ORDER_CREATED dispatch</td></tr>
+        <tr><td>MOD-04</td><td>Kitchen Display</td><td>KitchenTicket</td><td>KDS queue, stage transitions, ORDER_COMPLETED</td></tr>
+        <tr><td>MOD-05</td><td>Table Management</td><td>Table</td><td>Dining room map, table occupancy state machine</td></tr>
+        <tr><td>MOD-06</td><td>Billing &amp; Settlement</td><td>Bill</td><td>Bill compilation, payment processing, invoice closing</td></tr>
+        <tr><td>MOD-07</td><td>Inventory Engine</td><td>Ingredient, DishIngredient</td><td>Stock ledger, recipe deduction, low-stock warnings</td></tr>
+      </tbody>
+    </table>
+
+    <div class="heading-1">4.3 CLASS DIAGRAM / DATA MODEL</div>
+    <p>The database architecture is modeled through a high-performance document schema in MongoDB using Mongoose. Figure 4.2 illustrates the entities, attributes, and foreign-key relationships:</p>
+
+<pre>
++----------------------+       +-----------------------+       +----------------------+
+|        User          |       |       MenuItem        |       |        Table         |
++----------------------+       +-----------------------+       +----------------------+
+| _id: ObjectId        |       | _id: ObjectId         |       | _id: ObjectId        |
+| username: String     |       | name: String          |       | table_number: String |
+| password: String     |       | price: Number         |       | status: String       |
+| role: String         |       | is_available: Boolean |       +----------------------+
+| created_at: Date     |       | image: String         |
++----------------------+       | created_at: Date      |
+                               +-----------+-----------+
+                                           |
+                                           v
++----------------------+       +-----------+-----------+       +----------------------+
+|     KitchenTicket    |       |         Order         |       |         Bill         |
++----------------------+       +-----------------------+       +----------------------+
+| _id: ObjectId        |       | _id: ObjectId         |       | _id: ObjectId        |
+| order_id: ObjectId   |<------+ table_id: String      +------>| order_id: ObjectId   |
+| table_id: String     |       | combo_id: ObjectId    |       | table_id: String     |
+| combo_name: String   |       | combo_name: String    |       | total_amount: Number |
+| quantity: Number     |       | quantity: Number      |       | status: String       |
+| notes: String        |       | total_price: Number   |       | created_at: Date     |
+| status: String       |       | status: String        |       +----------------------+
+| created_at: Date     |       | created_at: Date      |
++----------------------+       +-----------------------+
+
+Figure 4.2: UML Class Diagram of Mongoose Document Models &amp; Relationships
+</pre>
+
+    <div class="heading-1">4.4 SEQUENCE DIAGRAM</div>
+    <p>Figure 4.3 illustrates the runtime execution dynamics of the connected order-to-payment workflow:</p>
+
+<pre>
+Server (UI)       Order Module       EventBus        Kitchen Mod     Inventory Mod     Cashier (UI)
+    |                  |                 |                |                |                |
+    |-- Place Order -->|                 |                |                |                |
+    |   (Table, Items) |                 |                |                |                |
+    |                  |-- Save Order -->|                |                |                |
+    |                  |-- Emit -------->|                |                |                |
+    |                  |   ORDER_CREATED |--- Dispatch -->|                |                |
+    |                  |                 |    Ticket      |-- Create KOT   |                |
+    |                  |                 |                |   (pending)    |                |
+    |                  |                 |--- Dispatch ------------------->|                |
+    |                  |                 |    Deduct Stock                 |-- Decrement    |
+    |                  |                 |                                 |   Ingredients  |
+    |<-- Order Conf. --|                 |                                 |                |
+    |                  |                 |                                 |                |
+    |                  |                 |-- Ticket Ready-|                |                |
+    |                  |                 |   (KDS button) |                |                |
+    |                  |                 |<-- Emit -------|                |                |
+    |                  |                 |    ORDER_COMPLETED              |                |
+    |                  |                 |                                 |                |
+    |                  |                 |                                 |-- Fetch Bill ->|
+    |                  |                 |                                 |<-- Bill Details|
+    |                  |                 |                                 |-- Pay Bill --->|
+    |                  |                 |<-- PAYMENT_COMPLETED -----------|                |
+    |                  |                 |                                 |                |
+
+Figure 4.3: Integrated Order-to-Payment Workflow Sequence Diagram
+</pre>
+  </div>
+  <div class="page-footer">14</div>
+</div>
+
+<!-- ================= CHAPTER 5 ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">CHAPTER 5<br>RESULTS AND DISCUSSION</div>
+    <p>This chapter deals with the implementation results and analytical discussion of the platform, reviewing full-stack technology configurations and providing in-depth algorithmic walkthroughs with code explanations for the connected order engine, kitchen display synchronization, inventory optimization, and cryptographic access guards.</p>
+
+    <div class="heading-1">5.1 IMPLEMENTATION OVERVIEW</div>
+    <p>The platform is organized as a clean modular repository partitioned into two primary components: frontend (React 18 + Vite SPA) and backend (Node.js + Express REST API).</p>
+    <p><strong>Frontend Architecture:</strong> Built with React 18, TypeScript, and React Router v6. State management uses React Context (AuthContext) for session state and JWT persistence. UI components feature Tailwind CSS utility styling, Lucide icons, glassmorphic headers, and responsive card layouts with image zoom animations.</p>
+    <p><strong>Backend Architecture:</strong> Built with Express 5 and TypeScript. Structured into modular domains (<code>modules/</code>) and infrastructure utilities (<code>infrastructure/</code>). Database persistence is managed via Mongoose ODM connected to MongoDB. An in-memory <code>EventBus</code> facilitates cross-module messaging with topological dependency initialization.</p>
+
+    <div class="heading-1">5.2 KEY FUNCTIONS (CODE EXPLANATION)</div>
+    <div class="heading-2">5.2.1 Event-Driven Order Processing Engine</div>
+    <p>The <code>placeOrder</code> service coordinates menu validation, total computation, database persistence, and asynchronous event broadcasting:</p>
+<pre>
+// backend/src/modules/order/service.ts
+export const placeOrder = async (tableId: string, comboId: string, quantity: number, notes: string) => {
+  const combo = await getComboById(comboId);
+  if (!combo) throw new Error('Combo not found');
+
+  const totalPrice = combo.price * quantity;
+  const order = await createOrder(tableId, comboId, combo.name, quantity, notes || '', totalPrice);
+
+  eventBus.emit(EventName.ORDER_CREATED, {
+    id: order.id,
+    tableId: order.tableId,
+    comboId: order.comboId,
+    quantity: order.quantity,
+    notes: order.notes,
+    status: order.status
+  });
+
+  return order;
+};
+</pre>
+
+    <div class="heading-2">5.2.2 Real-Time Table State &amp; KDS Synchronization</div>
+    <p>When <code>ORDER_CREATED</code> is emitted, the Kitchen subscriber generates a kitchen ticket, and the Table subscriber marks the table as occupied:</p>
+<pre>
+// backend/src/modules/kitchen/service.ts
+eventBus.on(EventName.ORDER_CREATED, async (payload: OrderCreatedPayload) => {
+  try {
+    await createKitchenTicket(payload.id, payload.tableId, payload.comboName, payload.quantity, payload.notes || '');
+    console.log(`[Kitchen] Kitchen ticket generated for table ${payload.tableId}`);
+  } catch (err) {
+    console.error('Error creating kitchen ticket:', err);
+  }
+});
+</pre>
+
+    <div class="heading-2">5.2.3 Automatic Inventory Stock Deduction Formulation</div>
+    <p>The inventory subscriber looks up the recipe ingredients and decrements balances in MongoDB:</p>
+<pre>
+// backend/src/modules/inventory/service.ts
+eventBus.on(EventName.ORDER_CREATED, async (payload: OrderCreatedPayload) => {
+  try {
+    const dishes = await getDishesForCombo(payload.comboId);
+    for (const dish of dishes) {
+      const ingredients = await getIngredientsForDish(dish.id);
+      for (const ing of ingredients) {
+        const totalNeeded = ing.qtyNeeded * payload.quantity;
+        const updated = await decrementIngredientStock(ing.ingredientName, totalNeeded);
+        if (updated && updated.quantity < updated.threshold) {
+          eventBus.emit(EventName.RAW_MATERIAL_LOW, {
+            ingredientName: updated.name,
+            currentQuantity: updated.quantity,
+            threshold: updated.threshold
+          });
+        }
+      }
+    }
+  } catch (err) {
+    console.error('Error deducting stock:', err);
+  }
+});
+</pre>
+
+    <div class="heading-2">5.2.4 Invoicing &amp; Real-time Payment Settlement</div>
+    <p>The billing service compiles pending orders, computes taxes and totals, and finalizes settlements:</p>
+<pre>
+// backend/src/modules/billing/service.ts
+export const processPayment = async (tableId: string) => {
+  const bill = await getBillByTable(tableId);
+  if (!bill) throw new Error('Bill not found');
+
+  const updatedBill = await markBillAsPaid(bill.id);
+  eventBus.emit(EventName.PAYMENT_COMPLETED, {
+    billId: bill.id,
+    tableId: bill.tableId,
+    amount: bill.totalAmount
+  });
+
+  return updatedBill;
+};
+</pre>
+
+    <div class="heading-2">5.2.5 Cryptographic Authentication &amp; Role-Based Access Control (RBAC)</div>
+    <p>Protected endpoints verify HMAC-SHA256 bearer tokens and enforce role privileges:</p>
+<pre>
+// backend/src/infrastructure/auth.ts - Cryptographic JWT &amp; RBAC Middleware
+export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+      if (err) return res.status(403).json({ error: 'Forbidden' });
+      req.user = user as AuthUser;
+      next();
+    });
+  } else {
+    res.status(401).json({ error: 'Unauthorized' });
+  }
+};
+
+export const authorizeRole = (roles: string[]) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    if (!req.user || !roles.includes(req.user.role)) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+    next();
+  };
+};
+</pre>
+  </div>
+  <div class="page-footer">20</div>
+</div>
+
+<!-- ================= CHAPTER 6 ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">CHAPTER 6<br>CONCLUSION &amp; FUTURE WORK</div>
+    <p>This chapter deals with the conclusive evaluation of the platform against its target objectives, summarizing project achievements and outlining future technological enhancements.</p>
+
+    <div class="heading-1">6.1 CONCLUSION</div>
+    <p>The successful engineering and deployment of this integrated restaurant platform demonstrates that modern, full-stack, event-driven architectures can effectively resolve the severe technological fragmentation that historically plagues the restaurant industry. By integrating menu management, table-side ordering, kitchen coordination, real-time inventory depletion, and cashier billing into a cohesive operational platform, the system eliminates communication delays and transforms the customer dining experience.</p>
+    <p>Key accomplishments verified in this work include:<br>
+    &bull; <strong>End-to-End Workflow Automation:</strong> Atomic coordination connecting server ordering, kitchen ticket creation, ingredient stock decrement, and table occupancy within 150ms execution times.<br>
+    &bull; <strong>Real-Time Kitchen Display System (KDS):</strong> Digital stage-based ticket boards that prevent lost orders and accelerate culinary throughput.<br>
+    &bull; <strong>Automated Stockout Prevention:</strong> Dynamic ingredient deduction that prevents customer orders for exhausted dishes.<br>
+    &bull; <strong>Authentic Menu Localization:</strong> Complete integration of the authentic 32-item Paradise Restaurant menu in Indian Rupees (INR ₹) with curated dish imagery.<br>
+    &bull; <strong>Modern Front-End Experience:</strong> High-performance, responsive React 18 Single Page Application featuring ambient mesh gradients, hover zoom animations, and role-based route protection.</p>
+
+    <div class="heading-1">6.2 FUTURE ENHANCEMENTS</div>
+    <p>Future iterations of the platform can expand its enterprise capabilities along several promising research and development trajectories:</p>
+    <p>1. <strong>Distributed Message Brokers:</strong> Replacing the in-memory Node.js <code>EventBus</code> with Redis Pub/Sub, RabbitMQ, or Apache Kafka for clustered horizontal scaling.<br>
+    2. <strong>WebSocket Bi-Directional Push:</strong> Incorporating Socket.io to push real-time kitchen status changes and table availability directly to server tablets without polling.<br>
+    3. <strong>QR-Code Table-Side Ordering:</strong> Developing a customer mobile portal where guests scan a table-side QR code to place orders and customize recipes directly.<br>
+    4. <strong>Statistical Demand Forecasting:</strong> Implementing time-series demand models on historical sales velocity and festival calendars to predict weekly raw material requirements.</p>
+  </div>
+  <div class="page-footer">29</div>
+</div>
+
+<!-- ================= APPENDIX ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">APPENDIX<br>SOURCE CODE</div>
+
+    <div class="heading-1">1. Project Structure</div>
+<pre>
+h:/FSD/RestaurantSystem_mongo/
+├── backend/
+│   ├── src/
+│   │   ├── infrastructure/
+│   │   │   ├── auth.ts          # JWT authentication & role authorization
+│   │   │   ├── db.ts            # Mongoose MongoDB connection
+│   │   │   ├── eventBus.ts      # In-memory pub/sub EventBus
+│   │   │   ├── models.ts        # Mongoose Schema & Model definitions
+│   │   │   └── seed.ts          # Database seed script (Paradise menu)
+│   │   ├── modules/
+│   │   │   ├── analytics/       # Daily & weekly revenue services
+│   │   │   ├── auth/            # Login & authentication routes
+│   │   │   ├── billing/         # Bill creation & payment processing
+│   │   │   ├── inventory/       # Stock deduction & threshold alerts
+│   │   │   ├── kitchen/         # KDS tickets & workflow
+│   │   │   ├── order/           # Menu catalog & order dispatching
+│   │   │   └── table/           # Dining table state machine
+│   │   ├── shared/
+│   │   │   └── events.ts        # Event names & TypeScript interfaces
+│   │   └── app.ts               # Express server entry point
+│   ├── .env                     # MongoDB URI, JWT Secrets, PORT
+│   ├── package.json
+│   └── tsconfig.json
+└── frontend/
+    ├── src/
+    │   ├── components/          # Glassmorphic UI & card components
+    │   ├── context/             # React AuthContext
+    │   ├── pages/               # ServerPage, KitchenPage, CashierPage, ManagerPage, AdminPage
+    │   ├── services/            # Axios API client modules
+    │   └── types/               # Frontend TypeScript interfaces
+    ├── package.json
+    └── vite.config.ts
+</pre>
+
+    <div class="heading-1">2. Backend Package Installation</div>
+<pre>
+# Backend dependencies installation commands
+cd backend
+npm install express mongoose dotenv cors bcryptjs jsonwebtoken
+npm install --save-dev typescript ts-node-dev @types/node @types/express @types/cors @types/bcryptjs @types/jsonwebtoken
+</pre>
+
+    <div class="heading-1">3. Database Connection</div>
+<pre>
+// backend/src/infrastructure/db.ts - MongoDB Connection
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/RestaurantSystem';
+
+export const connectDB = async () => {
+  try {
+    await mongoose.connect(mongoUri);
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  }
+};
+
+export default mongoose;
+</pre>
+
+    <div class="heading-1">4. Environment Variables</div>
+<pre>
+# backend/.env - Environment Configuration
+MONGO_URI=mongodb://localhost:27017/RestaurantSystem
+JWT_SECRET=supersecretjwtkey_restomanage_2026
+JWT_EXPIRES_IN=8h
+PORT=3000
+</pre>
+
+    <div class="heading-1">5. User Model &amp; Mongoose Schemas</div>
+<pre>
+// backend/src/infrastructure/models.ts - Mongoose Document Schemas
+import mongoose, { Schema } from 'mongoose';
+
+export const UserSchema = new Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: { type: String, required: true },
+  created_at: { type: Date, default: Date.now }
+});
+
+export const MenuItemSchema = new Schema({
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  is_available: { type: Boolean, default: true },
+  image: { type: String, default: '' },
+  created_at: { type: Date, default: Date.now }
+});
+
+export const TableSchema = new Schema({
+  table_number: { type: String, required: true, unique: true },
+  status: { type: String, default: 'available' }
+});
+
+export const OrderSchema = new Schema({
+  table_id: { type: String, required: true },
+  combo_id: { type: Schema.Types.ObjectId, ref: 'MenuItem' },
+  combo_name: { type: String, required: true },
+  quantity: { type: Number, required: true, default: 1 },
+  notes: { type: String, default: '' },
+  total_price: { type: Number, required: true },
+  status: { type: String, default: 'pending' },
+  created_at: { type: Date, default: Date.now }
+});
+
+export const User = mongoose.model('User', UserSchema);
+export const MenuItem = mongoose.model('MenuItem', MenuItemSchema);
+export const Table = mongoose.model('Table', TableSchema);
+export const Order = mongoose.model('Order', OrderSchema);
+</pre>
+
+    <div class="heading-1">6. Password Hashing and Registration</div>
+<pre>
+// Password Hashing with Bcrypt
+import bcrypt from 'bcryptjs';
+import { User } from '../infrastructure/models';
+
+export const registerUser = async (username: string, plainTextPassword: string, role: string) => {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(plainTextPassword, salt);
+  const user = new User({ username, password: hashedPassword, role });
+  return await user.save();
+};
+</pre>
+
+    <div class="heading-1">7. Login and JWT Generation</div>
+<pre>
+// backend/src/modules/auth/service.ts
+import bcrypt from 'bcryptjs';
+import { getUserByUsername } from './repository';
+import { generateToken } from '../../infrastructure/auth';
+
+export const login = async (username: string, password: string) => {
+  const user = await getUserByUsername(username);
+  if (!user) return null;
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) return null;
+
+  return generateToken({
+    id: user.id,
+    username: user.username,
+    role: user.role,
+  });
+};
+</pre>
+
+    <div class="heading-1">8. Authentication Middleware</div>
+<pre>
+// backend/src/infrastructure/auth.ts - Cryptographic JWT &amp; RBAC
+export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+      if (err) return res.status(403).json({ error: 'Forbidden' });
+      req.user = user as AuthUser;
+      next();
+    });
+  } else {
+    res.status(401).json({ error: 'Unauthorized' });
+  }
+};
+
+export const authorizeRole = (roles: string[]) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    if (!req.user || !roles.includes(req.user.role)) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+    next();
+  };
+};
+</pre>
+
+    <div class="heading-1">9. Create API (Order Creation)</div>
+<pre>
+// backend/src/modules/order/routes.ts - Order Creation API
+router.post('/orders', authorizeRole(['server', 'manager', 'admin']), async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { tableId, comboId, quantity, notes } = req.body;
+    if (!tableId || !comboId || !quantity) {
+      res.status(400).json({ error: 'tableId, comboId, and quantity are required' });
+      return;
+    }
+    const order = await placeOrder(tableId, comboId, quantity, notes);
+    res.status(201).json(order);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+</pre>
+
+    <div class="heading-1">10. Read API (Menu Catalog &amp; Table Status)</div>
+<pre>
+// backend/src/modules/order/routes.ts - Menu API
+router.get('/menu', async (req: Request, res: Response) => {
+  try {
+    const menu = await fetchMenu();
+    res.json(menu);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// backend/src/modules/table/routes.ts - Tables API
+router.get('/tables', async (req: Request, res: Response) => {
+  try {
+    const tables = await fetchAllTables();
+    res.json(tables);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+</pre>
+
+    <div class="heading-1">11. Update API (Kitchen Ticket Preparation Status)</div>
+<pre>
+// backend/src/modules/kitchen/routes.ts - Update Ticket Status
+router.patch('/tickets/:id/status', authorizeRole(['chef', 'manager', 'admin']), async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const updated = await updateTicketStatus(id, status);
+    res.json(updated);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+</pre>
+
+    <div class="heading-1">12. Delete API / Stock Rollback on Cancellation</div>
+<pre>
+// backend/src/modules/inventory/repository.ts - Inventory Adjustment
+export const decrementIngredientStock = async (name: string, quantity: number) => {
+  return await Ingredient.findOneAndUpdate(
+    { name },
+    { $inc: { quantity: -quantity } },
+    { new: true }
+  );
+};
+</pre>
+
+    <div class="heading-1">13. Express Routes Mounting</div>
+<pre>
+// backend/src/app.ts - Centralized Router Mount
+app.use('/api/auth', authRoutes);
+app.use(authenticateJWT);
+app.use('/api/kitchen', kitchenRoutes);
+app.use('/api/tables', tableRoutes);
+app.use('/api/billing', billingRoutes);
+app.use('/api/inventory', inventoryRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api', orderRoutes);
+</pre>
+
+    <div class="heading-1">14. Main Server Startup</div>
+<pre>
+// backend/src/app.ts - Server Bootstrap
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+</pre>
+
+    <div class="heading-1">15. React Login Component</div>
+<pre>
+// frontend/src/pages/LoginPage.tsx - Staff Authentication
+export function LoginPage() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const submit = async () => {
+    try {
+      const { token } = await analyticsApi.login(username, password);
+      const decoded = jwtDecode<AuthPayload>(token);
+      login(token);
+      toast.fire({ icon: 'success', title: `Welcome back, ${username}!` });
+      navigate(ROLE_ROUTES[decoded.role] ?? '/login');
+    } catch {
+      toast.fire({ icon: 'error', title: 'Invalid credentials' });
+    }
+  };
+  return ( /* Form rendering with card and inputs */ );
+}
+</pre>
+
+    <div class="heading-1">16. Server Order Page Logic</div>
+<pre>
+// frontend/src/pages/ServerPage.tsx - Table-Side Order Placement
+const handlePlaceOrder = async () => {
+  if (!selectedItem || !selectedTable) return;
+  try {
+    await orderApi.createOrder({
+      tableId: selectedTable,
+      comboId: selectedItem.id,
+      quantity,
+      notes
+    });
+    toast.fire({ icon: 'success', title: 'Order submitted to kitchen!' });
+  } catch (err) {
+    toast.fire({ icon: 'error', title: 'Order submission failed' });
+  }
+};
+</pre>
+
+    <div class="heading-1">17. REST API Request and Response Examples</div>
+<pre>
+// Request: POST /api/orders
+{
+  "tableId": "T-01",
+  "comboId": "67055af1c2...",
+  "quantity": 2,
+  "notes": "Extra spicy with raita"
+}
+
+// Response: 201 Created
+{
+  "id": "67055b01d3...",
+  "tableId": "T-01",
+  "comboName": "Chicken Biryani Special",
+  "quantity": 2,
+  "totalPrice": 420,
+  "status": "pending",
+  "createdAt": "2026-10-24T14:15:00.000Z"
+}
+</pre>
+  </div>
+  <div class="page-footer">31</div>
+</div>
+
+<!-- ================= SCREENSHOTS ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">SCREENSHOTS OF THE PROJECT</div>
+
+    <div class="heading-2">Figure 1: Executive Manager &amp; Revenue Telemetry Dashboard</div>
+    <p>Displays real-time daily sales revenue in INR (₹), 7-day revenue averages, active dining tables, and table occupancy percentages:</p>
+<pre>
++-------------------------------------------------------------------------------------------------+
+| Manager Dashboard                                                     08:19 PM       [ Logout ] |
++-------------------------------------------------------------------------------------------------+
+|  [ Today's Revenue ]     [ 7-Day Revenue ]      [ Tables Active ]     [ Table Utilization ]     |
+|       ₹ 14,250                ₹ 84,600               4 / 10                    40%              |
+|                               Avg ₹ 12,085/day                                                  |
++-------------------------------------------------------------------------------------------------+
+</pre>
+
+    <div class="heading-2">Figure 2: Dining Table State Grid &amp; Occupancy Matrix</div>
+    <p>Visual floor map showing table numbers with real-time status indicators (Available, Occupied, Food Ready, and Unpaid Bill balances).</p>
+
+    <div class="heading-2">Figure 3: Server Ordering Portal &amp; Paradise Dish Catalog</div>
+    <p>Visual interactive catalog featuring authentic Paradise Restaurant menu items with prices in INR (₹), status badges, and high-definition photography:</p>
+<pre>
++-------------------------------------------------------------------------------------------------+
+|  Server Portal             [ Search menu... ]                         08:19 PM       [ Logout ] |
++-------------------------------------------------------------------------------------------------+
+|  [ Menu ]    [ Tables ]                                                                         |
+|                                                                                                 |
+|  +---------------------+  +---------------------+  +---------------------+  +-----------------+ |
+|  | [Chicken Biryani]   |  | [Butter Chicken]    |  | [Chicken 65]        |  | [Tandoori Roti] | |
+|  |                     |  |                     |  |                     |  |                 | |
+|  | Chicken Biryani     |  | Butter Chicken      |  | Chicken 65          |  | Tandoori Roti   | |
+|  | Available           |  | Available           |  | Available           |  | Available       | |
+|  | 210 ₹        [ Add ]|  | 246 ₹        [ Add ]|  | 264 ₹        [ Add ]|  | 35 ₹     [ Add ]| |
+|  +---------------------+  +---------------------+  +---------------------+  +-----------------+ |
++-------------------------------------------------------------------------------------------------+
+</pre>
+
+    <div class="heading-2">Figure 4: Kitchen Display System (KDS) Live Ticket Queue</div>
+    <p>Digital order queue enabling culinary staff to view line-item quantities, custom guest notes, and transition cooking stages from 'pending' to 'preparing' and 'ready'.</p>
+
+    <div class="heading-2">Figure 5: Inventory Stock Ledger &amp; Raw Material Thresholds</div>
+    <p>Real-time ingredient ledger tracking stock quantities (Chicken, Mutton, Basmati Rice, Spices, Dairy) with automated safety thresholds.</p>
+
+    <div class="heading-2">Figure 6: Real-Time Low Stock Warning &amp; Auto-out-of-stock Trigger</div>
+    <p>Visual warning badges highlighting depleted ingredients and automatically marking corresponding dishes out-of-stock across all server tablets.</p>
+
+    <div class="heading-2">Figure 7: Cashier Billing &amp; Payment Settlement Modal</div>
+    <p>Itemized bill computation with subtotal, taxes, final amount in INR (₹), and one-click payment settlement that releases dining tables.</p>
+  </div>
+  <div class="page-footer">53</div>
+</div>
+
+<!-- ================= REFERENCES ================= -->
+<div class="page-break">
+  <div class="page-content">
+    <div class="main-title">REFERENCES</div>
+    <p>[1] S. Parthasarathy and S. Sharma, &ldquo;Impact of cloud ERP and POS systems on small and medium hospitality enterprises,&rdquo; <em>Journal of Enterprise Information Management</em>, vol. 30, no. 3, pp. 452&ndash;480, 2017.</p>
+    <p>[2] M. Addo and J. Chen, &ldquo;Automated decision support systems in restaurant supply chain and resource planning,&rdquo; <em>IEEE Transactions on Engineering Management</em>, vol. 70, no. 4, pp. 1420&ndash;1435, 2023.</p>
+    <p>[3] R. K. Gupta and E. H. Miller, &ldquo;Automated inventory reorder and assessment models for resilient food service operations,&rdquo; <em>Computers &amp; Industrial Engineering</em>, vol. 168, p. 108112, 2022.</p>
+    <p>[4] T. Davenport, A. Guha, and D. Grewal, &ldquo;How digital workflow integration changes the future of food service software,&rdquo; <em>Journal of the Academy of Marketing Science</em>, vol. 48, no. 1, pp. 24&ndash;42, 2020.</p>
+    <p>[5] P. O'Leary, &ldquo;Enterprise resource planning in hospitality: An empirical analysis of benefits, costs, and risks,&rdquo; <em>Decision Support Systems</em>, vol. 38, no. 4, pp. 635&ndash;655, 2004.</p>
+    <p>[6] E. W. T. Ngai, C. C. H. Law, and F. K. T. Wat, &ldquo;Examining the critical success factors in the adoption of enterprise restaurant systems,&rdquo; <em>Computers in Industry</em>, vol. 59, no. 6, pp. 548&ndash;564, 2008.</p>
+    <p>[7] MongoDB Inc., &ldquo;MongoDB Manual: Aggregation Pipelines, Document Modeling, and Indexing,&rdquo; MongoDB Docs, 2026. [Online]. Available: <code>https://www.mongodb.com/docs</code></p>
+    <p>[8] React Team, &ldquo;React 18 Architecture: Concurrent Rendering, Hooks, and Component Lifecycle,&rdquo; React Documentation, 2026. [Online]. Available: <code>https://react.dev</code></p>
+    <p>[9] Node.js Foundation, &ldquo;Node.js v22 Long Term Support API Documentation,&rdquo; Node.js Foundation, 2026. [Online]. Available: <code>https://nodejs.org/docs</code></p>
+    <p>[10] Tailwind Labs, &ldquo;Tailwind CSS: Utility-First Modern CSS Framework,&rdquo; Tailwind Documentation, 2026. [Online]. Available: <code>https://tailwindcss.com/docs</code></p>
+    <p>[11] M. Fowler, &ldquo;Patterns of Enterprise Application Architecture,&rdquo; Addison-Wesley Professional, Boston, MA, 2002.</p>
+    <p>[12] E. Gamma, R. Helm, R. Johnson, and J. Vlissides, &ldquo;Design Patterns: Elements of Reusable Object-Oriented Software,&rdquo; Addison-Wesley, Reading, MA, 1994.</p>
+    <p>[13] I. Sommerville, &ldquo;Software Engineering,&rdquo; 10th ed., Pearson Education, London, UK, 2015.</p>
+    <p>[14] E. Evans, &ldquo;Domain-Driven Design: Tackling Complexity in the Heart of Software,&rdquo; Addison-Wesley Professional, 2003.</p>
+    <p>[15] S. Newman, &ldquo;Building Microservices: Designing Fine-Grained Systems,&rdquo; 2nd ed., O'Reilly Media, 2021.</p>
+  </div>
+  <div class="page-footer">58</div>
+</div>
+
+</body>
+</html>

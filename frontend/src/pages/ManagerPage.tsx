@@ -121,7 +121,7 @@ export function ManagerPage() {
         [weekRevenueData, selectedDate, dailyRevenue]
     );
 
-    const formatVnd = (amount: number) => `${Math.round(amount).toLocaleString('en-US')} VND`;
+    const formatInr = (amount: number) => `${Math.round(amount).toLocaleString('en-IN')} ₹`;
 
     return (
         <div className="flex min-h-screen flex-col bg-muted/20">
@@ -186,7 +186,7 @@ export function ManagerPage() {
                                     <TrendingUp className="h-5 w-5 text-primary" />
                                 </div>
                                 <div>
-                                    <p className="text-2xl font-bold text-foreground">{formatVnd(totalWeekRevenue)}</p>
+                                    <p className="text-2xl font-bold text-foreground">{formatInr(totalWeekRevenue)}</p>
                                     <p className="text-xs text-muted-foreground">Week Revenue</p>
                                 </div>
                             </div>
@@ -367,7 +367,7 @@ export function ManagerPage() {
                                                     <div>
                                                         <p className="text-sm text-muted-foreground">Total Revenue</p>
                                                         <p className="text-3xl font-bold text-foreground">
-                                                            {formatVnd(selectedRevenue.amount)}
+                                                            {formatInr(selectedRevenue.amount)}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -418,7 +418,7 @@ export function ManagerPage() {
                                                         )}
                                                     />
                                                     <span className="text-sm font-medium text-foreground">
-                                                        {new Date(day.date).toLocaleDateString('en-US', {
+                                                        {new Date(day.date).toLocaleDateString('en-IN', {
                                                             weekday: 'short',
                                                             month: 'short',
                                                             day: 'numeric',
@@ -427,7 +427,7 @@ export function ManagerPage() {
                                                 </div>
                                                 <div className="text-right">
                                                     <p className="text-sm font-semibold text-foreground">
-                                                        {formatVnd(day.amount)}
+                                                        {formatInr(day.amount)}
                                                     </p>
                                                 </div>
                                             </button>

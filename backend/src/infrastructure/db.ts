@@ -1,14 +1,19 @@
-import { Pool } from 'pg';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const pool = new Pool({
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || '5432', 10),
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-});
+const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/RestaurantSystem';
 
-export const query = (text: string, params?: any[]) => pool.query(text, params);
+export const connectDB = async () => {
+  try {
+    await mongoose.connect(mongoUri);
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  }
+};
+
+// Export mongoose to keep similarity if needed, though we generally import models directly
+export default mongoose;

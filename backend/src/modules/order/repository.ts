@@ -1,59 +1,86 @@
-import { query } from '../../infrastructure/db';
+import { MenuItem, Order, ComboDish, DishIngredient } from '../../infrastructure/models';
 
 export const getMenu = async () => {
-  const result = await query('SELECT id, name, price, is_available as "isAvailable" FROM menu_items ORDER BY name');
-  return result.rows;
+  const items = await MenuItem.find().sort({ name: 1 }).lean();
+  return items.map(i => ({
+    id: i._id.toString(),
+    name: i.name,
+    price: i.price,
+    isAvailable: i.is_available,
+    image: i.image
+  }));
 };
 
 export const updateMenuAvailability = async (id: string, isAvailable: boolean) => {
-  const result = await query(
-    'UPDATE menu_items SET is_available = $1 WHERE id = $2 RETURNING *',
-    [isAvailable, id]
-  );
-  return result.rows[0];
+  const item = await MenuItem.findByIdAndUpdate(
+    id,
+    { is_available: isAvailable },
+    { new: true }
+  ).lean();
+  return item ? { ...item, id: item._id.toString() } : null;
 };
 
 export const markCombosUnavailableByIngredient = async (ingredientName: string) => {
-  const result = await query(`
-    UPDATE menu_items
-    SET is_available = false
-    WHERE id IN (
-      SELECT cd.combo_id
-      FROM combo_dishes cd
-      JOIN dish_ingredients di ON cd.dish_id = di.dish_id
-      WHERE di.ingredient_name = $1
-    )
-    RETURNING id, name
-  `, [ingredientName]);
-  return result.rows;
+  const dishIngredients = await DishIngredient.find({ ingredient_name: ingredientName }).lean();
+  const dishIds = dishIngredients.map(di => di.dish_id).filter(Boolean) as any[];
+  
+  const comboDishes = await ComboDish.find({ dish_id: { $in: dishIds } }).lean();
+  const comboIds = comboDishes.map(cd => cd.combo_id).filter(Boolean) as any[];
+  
+  await MenuItem.updateMany(
+    { _id: { $in: comboIds } },
+    { is_available: false }
+  );
+  
+  const updatedCombos = await MenuItem.find({ _id: { $in: comboIds } }).lean();
+  return updatedCombos.map(c => ({ id: c._id.toString(), name: c.name }));
 };
 
 export const getComboById = async (comboId: string) => {
-  const result = await query('SELECT name, price FROM menu_items WHERE id = $1', [comboId]);
-  return result.rows[0];
+  const item = await MenuItem.findById(comboId).lean();
+  if (!item) return null;
+  return { name: item.name, price: item.price };
 };
 
 export const createOrder = async (tableId: string, comboId: string, comboName: string, quantity: number, notes: string, totalPrice: number) => {
-  const result = await query(
-    `INSERT INTO orders (table_id, combo_id, combo_name, quantity, notes, total_price, status)
-     VALUES ($1, $2, $3, $4, $5, $6, 'pending')
-     RETURNING id, table_id AS "tableId", combo_id AS "comboId", combo_name AS "comboName", quantity, notes, total_price AS "totalPrice", status, created_at AS "createdAt"`,
-    [tableId, comboId, comboName, quantity, notes, totalPrice]
-  );
-  return result.rows[0];
+  const order = new Order({
+    table_id: tableId,
+    combo_id: comboId,
+    combo_name: comboName,
+    quantity,
+    notes: notes || '',
+    total_price: totalPrice,
+    status: 'pending'
+  });
+  await order.save();
+  return {
+    id: order._id.toString(),
+    tableId: order.table_id,
+    comboId: order.combo_id?.toString(),
+    comboName: order.combo_name,
+    quantity: order.quantity,
+    notes: order.notes,
+    totalPrice: order.total_price,
+    status: order.status,
+    createdAt: order.created_at
+  };
 };
 
 export const updateOrderStatus = async (orderId: string, status: string) => {
-  await query('UPDATE orders SET status = $1 WHERE id = $2', [status, orderId]);
+  await Order.findByIdAndUpdate(orderId, { status });
 };
 
 export const getOrdersByTable = async (tableId: string) => {
-  const result = await query(
-    `SELECT id, table_id AS "tableId", combo_id AS "comboId", combo_name AS "comboName", quantity, notes, total_price AS "totalPrice", status, created_at AS "createdAt" 
-     FROM orders 
-     WHERE table_id = $1 
-     ORDER BY created_at DESC`,
-    [tableId]
-  );
-  return result.rows;
+  const orders = await Order.find({ table_id: tableId }).sort({ created_at: -1 }).lean();
+  return orders.map(o => ({
+    id: o._id.toString(),
+    tableId: o.table_id,
+    comboId: o.combo_id?.toString(),
+    comboName: o.combo_name,
+    quantity: o.quantity,
+    notes: o.notes,
+    totalPrice: o.total_price,
+    status: o.status,
+    createdAt: o.created_at
+  }));
 };

@@ -6,7 +6,7 @@ export type TableStatus  = 'available' | 'occupied' | 'food_ready';
 export type BillStatus   = 'pending' | 'paid';
 
 export type MenuItem = {
-  id: string; name: string; price: number; isAvailable: boolean;
+  id: string; name: string; price: number; isAvailable: boolean; image?: string;
 };
 export type Order = {
   id: string; tableId: string; comboId: string; comboName: string;

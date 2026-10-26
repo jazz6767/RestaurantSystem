@@ -5,7 +5,7 @@ import { EventName, PaymentCompletedPayload } from '../../shared/events';
 
 export const fetchRevenue = async (date: string) => {
   const total = await getRevenueByDate(date);
-  return { date, total: parseInt(total as string, 10) || 0 };
+  return { date, total: total || 0 };
 };
 
 export const fetchUsers = async () => {

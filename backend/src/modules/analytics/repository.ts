@@ -1,33 +1,42 @@
-import { query } from '../../infrastructure/db';
+import { Revenue, User } from '../../infrastructure/models';
 
 export const getRevenueByDate = async (date: string) => {
-  const result = await query(`
-    SELECT SUM(amount) as total 
-    FROM revenues 
-    WHERE date = $1
-  `, [date]);
-  return result.rows[0].total || 0;
+  const startOfDay = new Date(date);
+  startOfDay.setUTCHours(0, 0, 0, 0);
+  
+  const endOfDay = new Date(date);
+  endOfDay.setUTCHours(23, 59, 59, 999);
+
+  const revenues = await Revenue.find({
+    date: { $gte: startOfDay, $lte: endOfDay }
+  }).lean();
+  
+  return revenues.reduce((sum, rev) => sum + rev.amount, 0);
 };
 
 export const insertRevenue = async (billId: string, amount: number) => {
-  const result = await query(`
-    INSERT INTO revenues (bill_id, amount, date)
-    VALUES ($1, $2, CURRENT_DATE)
-    RETURNING *
-  `, [billId, amount]);
-  return result.rows[0];
+  const revenue = new Revenue({ bill_id: billId, amount, date: new Date() });
+  await revenue.save();
+  return { ...revenue.toObject(), id: revenue._id.toString() };
 };
 
 export const getAllUsers = async () => {
-  const result = await query('SELECT id, username, role, created_at FROM users');
-  return result.rows;
+  const users = await User.find().lean();
+  return users.map(u => ({
+    id: u._id.toString(),
+    username: u.username,
+    role: u.role,
+    created_at: u.created_at
+  }));
 };
 
 export const createUser = async (username: string, passwordHash: string, role: string) => {
-  const result = await query(`
-    INSERT INTO users (username, password, role)
-    VALUES ($1, $2, $3)
-    RETURNING id, username, role, created_at
-  `, [username, passwordHash, role]);
-  return result.rows[0];
+  const user = new User({ username, password: passwordHash, role });
+  await user.save();
+  return {
+    id: user._id.toString(),
+    username: user.username,
+    role: user.role,
+    created_at: user.created_at
+  };
 };

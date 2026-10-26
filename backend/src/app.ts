@@ -1,7 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { pool } from './infrastructure/db';
+import mongoose from 'mongoose';
+import { connectDB } from './infrastructure/db';
 import { authenticateJWT } from './infrastructure/auth';
 
 import { authRoutes } from './modules/auth';
@@ -15,6 +16,9 @@ import { initOrderModule, orderRoutes } from './modules/order';
 dotenv.config();
 
 const app = express();
+
+// Connect to MongoDB
+connectDB();
 
 app.use(cors());
 app.use(express.json());
@@ -30,11 +34,11 @@ initAnalyticsModule();
 initOrderModule();
 
 // Routes that do NOT require authentication
-app.get('/api/health', async (req, res) => {
-  try {
-    await pool.query('SELECT 1');
+app.get('/api/health', (req, res) => {
+  const isConnected = mongoose.connection.readyState === 1;
+  if (isConnected) {
     res.status(200).json({ status: 'ok', db: 'connected' });
-  } catch (err) {
+  } else {
     res.status(500).json({ status: 'error', db: 'disconnected' });
   }
 });

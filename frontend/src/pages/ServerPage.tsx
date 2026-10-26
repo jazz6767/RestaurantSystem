@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import {
     Sheet,
@@ -61,7 +62,7 @@ export function ServerPage() {
     }, [menu, searchQuery]);
 
     const subtotal = selectedItem ? selectedItem.price * quantity : 0;
-    const formatVnd = (amount: number) => `${Math.round(amount).toLocaleString('en-US')} VND`;
+    const formatInr = (amount: number) => `${Math.round(amount).toLocaleString('en-IN')} ₹`;
 
     const openOrderSheet = (menuItem: MenuItem) => {
         setSelectedItem(menuItem);
@@ -148,28 +149,43 @@ export function ServerPage() {
                                 <p className="text-muted-foreground">No items found</p>
                             </div>
                         ) : (
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                 {filteredMenu.map(item => (
                                     <Card
                                         key={item.id}
-                                        className="overflow-hidden rounded-2xl transition hover:shadow-sm"
+                                        className="group relative overflow-hidden rounded-2xl border-0 bg-background/50 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl dark:bg-card/40 backdrop-blur-md"
                                     >
-                                        <div className="flex h-28 items-center justify-center bg-orange-50 text-3xl font-bold text-orange-200">
-                                            {item.name.charAt(0).toUpperCase()}
-                                        </div>
-                                        <CardContent className="space-y-2 p-3">
-                                            <div className="line-clamp-1 text-sm font-semibold">{item.name}</div>
-                                            <div className="text-xs text-muted-foreground">
+                                        <div className="absolute top-2 right-2 z-10">
+                                            <Badge variant={item.isAvailable ? "secondary" : "destructive"} className="shadow-sm backdrop-blur-md bg-background/80">
                                                 {item.isAvailable ? 'Available' : 'Out of stock'}
+                                            </Badge>
+                                        </div>
+                                        {item.image ? (
+                                            <div className="relative h-40 w-full overflow-hidden bg-muted">
+                                                <img 
+                                                    src={item.image} 
+                                                    alt={item.name} 
+                                                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                                             </div>
-                                            <div className="flex items-center justify-between">
-                                                <div className="text-sm font-semibold text-orange-600">
-                                                    {formatVnd(item.price)}
+                                        ) : (
+                                            <div className="flex h-40 items-center justify-center bg-gradient-to-br from-orange-100 to-amber-50 text-5xl font-extrabold text-orange-200/50">
+                                                {item.name.charAt(0).toUpperCase()}
+                                            </div>
+                                        )}
+                                        <CardContent className="space-y-3 p-4">
+                                            <div className="line-clamp-2 min-h-[2.5rem] text-sm font-bold leading-tight text-foreground/90">{item.name}</div>
+                                            
+                                            <div className="flex items-center justify-between pt-1">
+                                                <div className="text-base font-black text-orange-600 dark:text-orange-400">
+                                                    {formatInr(item.price)}
                                                 </div>
                                                 <Button
                                                     size="sm"
                                                     disabled={!item.isAvailable}
                                                     onClick={() => openOrderSheet(item)}
+                                                    className="rounded-full px-4 font-semibold shadow-md transition-all hover:scale-105 active:scale-95 bg-orange-500 hover:bg-orange-600 text-white"
                                                 >
                                                     Add
                                                 </Button>
@@ -239,7 +255,7 @@ export function ServerPage() {
                                     <div>
                                         <div className="text-sm font-medium">{selectedItem.name}</div>
                                         <div className="text-xs text-orange-600">
-                                            {formatVnd(selectedItem.price)}
+                                            {formatInr(selectedItem.price)}
                                         </div>
                                     </div>
                                     <div className="space-y-1">
@@ -287,7 +303,7 @@ export function ServerPage() {
                         <div className="w-full space-y-2">
                             <div className="flex items-center justify-between text-sm">
                                 <span>Subtotal</span>
-                                <span>{formatVnd(subtotal)}</span>
+                                <span>{formatInr(subtotal)}</span>
                             </div>
                             <Button
                                 className="w-full"

@@ -1,9 +1,12 @@
-import { query } from '../../infrastructure/db';
+import { User } from '../../infrastructure/models';
 
 export const getUserByUsername = async (username: string) => {
-  const result = await query(
-    'SELECT id, username, password, role FROM users WHERE username = $1',
-    [username]
-  );
-  return result.rows[0];
+  const user = await User.findOne({ username }).lean();
+  if (!user) return null;
+  return {
+    id: user._id.toString(),
+    username: user.username,
+    password: user.password,
+    role: user.role
+  };
 };

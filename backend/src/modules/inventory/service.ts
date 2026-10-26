@@ -20,19 +20,19 @@ export const initInventorySubscribers = () => {
       
       for (const item of ingredientsToDeduct) {
         if (!deductionMap[item.name]) {
-          deductionMap[item.name] = { currentQuantity: parseFloat(item.currentQuantity), threshold: parseFloat(item.threshold), deductAmount: 0 };
+          deductionMap[item.name] = { currentQuantity: item.currentQuantity, threshold: item.threshold, deductAmount: 0 };
         }
-        deductionMap[item.name].deductAmount += parseFloat(item.deductAmount);
+        deductionMap[item.name].deductAmount += item.deductAmount;
       }
 
       for (const name of Object.keys(deductionMap)) {
         const toDeduct = deductionMap[name].deductAmount;
         const updated = await deductIngredient(name, toDeduct);
-        if (updated && parseFloat(updated.quantity) <= parseFloat(updated.threshold)) {
+        if (updated && updated.quantity <= updated.threshold) {
           eventBus.emit(EventName.RAW_MATERIAL_LOW, {
             ingredientName: updated.name,
-            currentQuantity: parseFloat(updated.quantity),
-            threshold: parseFloat(updated.threshold)
+            currentQuantity: updated.quantity,
+            threshold: updated.threshold
           });
         }
       }

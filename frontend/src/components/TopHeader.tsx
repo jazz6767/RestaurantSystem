@@ -20,17 +20,17 @@ export function TopHeader({ title, icon, children, centerContent }: TopHeaderPro
     };
 
     return (
-        <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
+        <header className="sticky top-0 z-40 border-b border-border/40 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 shadow-sm">
             <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 md:px-6">
                 <div className="flex flex-1 items-center gap-3">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                         {icon && (
-                            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 to-red-500 text-white shadow-inner">
                                 {icon}
                             </div>
                         )}
                         <div>
-                            <h1 className="text-lg font-semibold text-foreground">{title}</h1>
+                            <h1 className="text-xl font-bold tracking-tight text-foreground">{title}</h1>
                             <p className="text-xs text-muted-foreground">Restaurant System</p>
                         </div>
                     </div>

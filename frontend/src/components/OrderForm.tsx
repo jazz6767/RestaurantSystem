@@ -41,7 +41,7 @@ export function OrderForm() {
                     <CardContent className="p-4 text-sm">
                         <strong className="text-success-foreground">Selected:</strong>{' '}
                         <span className="font-medium">{selected.name}</span> —{' '}
-                        {selected.price.toLocaleString('en-US')} VND
+                        {selected.price.toLocaleString('en-IN')} ₹
                     </CardContent>
                 </Card>
             )}

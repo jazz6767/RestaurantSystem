@@ -24,7 +24,7 @@ export function RevenueChart() {
                     className="mb-4"
                 />
                 <div className="text-4xl font-bold text-foreground">
-                    {total === null ? '...' : `${total.toLocaleString('en-US')} VND`}
+                    {total === null ? '...' : `${total.toLocaleString('en-IN')} ₹`}
                 </div>
             </CardContent>
         </Card>
